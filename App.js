@@ -21,6 +21,7 @@ const App = () => {
         value={telefone}
         onChangeText={txt => setTelefone(txt)}
       />
+      <Text>{telefone}</Text>
     </View>
   );
 };

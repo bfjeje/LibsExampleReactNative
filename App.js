@@ -1,82 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {TextInputMask} from 'react-native-masked-text';
+import Tela1 from './src/Tela1';
+import Tela2 from './src/Tela2';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+const Stack = createStackNavigator();
 
-const App = () => {
-  const [telefone, setTelefone] = useState('');
-
-  const [name, setName] = useState('');
-  useEffect(() => {
-    AsyncStorage.getItem('@telefone')
-      .then(res => {
-        const temp = JSON.parse(res);
-        setTelefone(temp.telefone);
-        setName(temp.name);
-      })
-      .catch(err => {
-        alert('Erro ao recuperar: ' + err);
-      });
-  }, []);
-  const salvar = async function () {
-    const user = {
-      telefone: telefone,
-      name: name,
-    };
-
-    AsyncStorage.setItem('@telefone', JSON.stringify(user))
-      .then(res => {
-        alert('ok');
-      })
-      .catch(error => {
-        alert('Error ao salvar: ' + error);
-      });
-  };
-  const apagar = function () {
-    AsyncStorage.removeItem('@telefone')
-      .then(res => {
-        alert('Apagado com success');
-      })
-      .catch(erro => {
-        alert('Erro ao apagar ' + erro);
-      });
-  };
-
+// O projeto anterior esta em App.js.backup.
+function MyApp() {
   return (
-    <View>
-      <Text>Digite seu nome:</Text>
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={txt => setName(txt)}
-      />
-
-      <Text>Digite seu telefone:</Text>
-
-      <TextInputMask
-        type={'cel-phone'}
-        style={styles.input}
-        options={{
-          maskType: 'BRL',
-          withDDD: true,
-          dddMask: '(99) ',
-        }}
-        value={telefone}
-        onChangeText={txt => setTelefone(txt)}
-      />
-      <Text>{telefone}</Text>
-      <Button title="Salvar" onPress={salvar} />
-      <Button title="Apagar" onPress={apagar} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen component={Tela1} name="Tela1" />
+        <Stack.Screen component={Tela2} name="Tela2" />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-  },
-});
-
-export default App;
+export default MyApp;

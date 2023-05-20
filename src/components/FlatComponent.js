@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     marginBottom: 10,
     flexDirection: 'row',
+    padding: 5,
+    borderRadius: 6,
   },
   subcontainer: {
     marginStart: 10,

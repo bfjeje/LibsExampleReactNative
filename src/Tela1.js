@@ -1,26 +1,38 @@
-import React, {useState} from 'react';
-import {Text, View, Button, TextInput, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {View, FlatList} from 'react-native';
+
+import FlatComponent from './components/FlatComponent';
 
 const Tela1 = () => {
-  const [name, setName] = useState('');
-  const navigation = useNavigation();
-  const navegar = () => {
-    navigation.navigate('Tela2', {name: name, idade: 32});
-  };
+  const data = [
+    {
+      key: '0',
+      filme: 'Sciiby Doo',
+      ano: 2020,
+      estilo: 'Comedia',
+      direcao: 'Tony Cervone',
+      image: 'https://github.com/bfjeje.png',
+      descricaco: 'Descricao',
+    },
+    {
+      key: '1',
+      filme: 'Doce atardecer',
+      ano: 2021,
+      estilo: 'Drama',
+      direcao: 'Jacke',
+      image: 'https://github.com/bfjeje.png',
+      descricaco: 'Descricao2',
+    },
+  ];
+
   return (
     <View>
-      <Text>Digite seu nome:</Text>
-      <TextInput style={styles.input} value={name} onChangeText={txt => setName(txt)} />
-      <Button title="Ir Tela 2" onPress={navegar} />
+      <FlatList
+        data={data}
+        renderItem={({item}) => <FlatComponent data={item} />}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-  },
-});
 
 export default Tela1;

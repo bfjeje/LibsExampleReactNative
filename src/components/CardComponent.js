@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Tela2 = ({data}) => {
+const CardComponent = ({data}) => {
   const navigation = useNavigation();
   const navegar = () => {
     navigation.navigate('Tela2', {data: data});
@@ -12,12 +12,12 @@ const Tela2 = ({data}) => {
       <Image
         resizeMode="contain"
         source={{uri: data.image}}
-        style={{width: 100, height: 100}}
+        style={{width: 105, height: 150, borderRadius: 5}}
       />
       <View style={styles.subcontainer}>
         <Text style={styles.title}>{data.filme}</Text>
         <Text>{data.ano}</Text>
-        <Text>{data.estilo}</Text>
+        <Text style={styles.genres}>{data.estilo}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -25,19 +25,28 @@ const Tela2 = ({data}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'gray',
-    marginBottom: 10,
+    backgroundColor: '#dfdfdf',
+    marginHorizontal: 10,
+    marginVertical: 30,
     flexDirection: 'row',
     padding: 5,
     borderRadius: 6,
+    elevation: 10,
+    borderWidth: 0.2,
   },
   subcontainer: {
-    marginStart: 10,
+    padding: 10,
+    width: '70%',
   },
   title: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
+    textAlign: 'auto',
+    color: 'black',
+  },
+  genres: {
+    fontStyle: 'italic',
   },
 });
 
-export default Tela2;
+export default CardComponent;

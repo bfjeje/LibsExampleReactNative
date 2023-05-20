@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 
-import FlatComponent from './components/FlatComponent';
+import CardComponent from './components/CardComponent';
 
 const Tela1 = () => {
   const data = [
@@ -33,7 +33,7 @@ const Tela1 = () => {
     <View>
       <FlatList
         data={data}
-        renderItem={({item}) => <FlatComponent data={item} />}
+        renderItem={({item}) => <CardComponent data={item} />}
       />
     </View>
   );

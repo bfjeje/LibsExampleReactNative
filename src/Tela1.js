@@ -1,21 +1,26 @@
-import React from 'react';
-import {Text, View, Button} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Button, TextInput, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 const Tela1 = () => {
+  const [name, setName] = useState('');
   const navigation = useNavigation();
   const navegar = () => {
-    navigation.navigate('Tela2');
+    navigation.navigate('Tela2', {name: name, idade: 32});
   };
   return (
     <View>
-      <Text>Tela 1</Text>
-      <Icon name="music" size={50} color="#f00" />
+      <Text>Digite seu nome:</Text>
+      <TextInput style={styles.input} value={name} onChangeText={txt => setName(txt)} />
       <Button title="Ir Tela 2" onPress={navegar} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    borderWidth: 1,
+  },
+});
 
 export default Tela1;

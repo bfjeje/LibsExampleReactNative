@@ -1,17 +1,16 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {Text, View} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 const Tela2 = () => {
-  const navigation = useNavigation();
+  const route = useRoute();
 
-  const voltar = () => {
-    navigation.goBack();
-  };
+  const name = route.params.name;
+  const idade = route.params.idade;
+
   return (
     <View>
-      <Text>Tela 2</Text>
-      <Button title="Voltar" onPress={voltar} />
+      <Text>Seja Bem Vindo, {name}! Parabens pelos seus {idade} anos!</Text>
     </View>
   );
 };
